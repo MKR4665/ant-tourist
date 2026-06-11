@@ -29,6 +29,8 @@ import RentCarPage from './pages/RentCarPage'
 import BusTourPage from './pages/BusTourPage'
 import PopularRoutesPage from './pages/PopularRoutesPage'
 import RouteBusesPage from './pages/RouteBusesPage'
+import BusDetailPage from './pages/BusDetailPage'
+import BusBookingPage from './pages/BusBookingPage'
 
 function FormSelect({
   label,
@@ -2392,6 +2394,12 @@ function App() {
   }
   if (currentPath === '/popular-routes/view-buses') {
     return <RouteBusesPage />
+  }
+  if (currentPath === '/popular-routes/view-buses/detail') {
+    return <BusDetailPage />
+  }
+  if (currentPath === '/popular-routes/view-buses/detail/book-now') {
+    return <BusBookingPage />
   }
 
   return (

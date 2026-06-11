@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { FaClock, FaSnowflake, FaStar, FaSuitcase, FaTint, FaUsers } from 'react-icons/fa'
 import FigmaNavbar from '../components/figma/FigmaNavbar'
 import EnquiryFooter from '../components/EnquiryFooter'
@@ -7,6 +7,7 @@ import FloatingCTA from '../components/ui/FloatingCTA'
 import busImage from '../image/2.png'
 
 const defaultTitle = 'Comfortable Bus Hire Service For Delhi To Jaipur Tour'
+const defaultRouteName = 'Delhi to jaipur'
 const sortOptions = ['Best', 'Cheapest']
 const busTypeFilters = ['All', 'Luxury Bus Rental', 'AC Sleeper Bus', 'AC Seater Bus']
 const amenityFilters = [
@@ -40,13 +41,21 @@ const buildTourTitle = (routeTitle = '') => {
   return cleanRoute ? `Comfortable Bus Hire Service For ${cleanRoute} Tour` : defaultTitle
 }
 
+const getRouteName = (routeTitle = '') => routeTitle.replace(/\s+Bus\s+Rental$/i, '').trim() || defaultRouteName
+
 export default function RouteBusesPage() {
   const location = useLocation()
+  const navigate = useNavigate()
   const title = buildTourTitle(location.state?.routeTitle)
+  const routeName = getRouteName(location.state?.routeTitle)
   const [activeSort, setActiveSort] = useState('Best')
   const [visibleCount, setVisibleCount] = useState(3)
   const visibleListings = busListings.slice(0, visibleCount)
   const canLoadMore = visibleCount < busListings.length
+  const openBusDetail = () => {
+    navigate('/popular-routes/view-buses/detail', { state: { pageTitle: title } })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
     <div className="min-h-screen bg-[#ececec] text-[#4D4D4D]">
@@ -211,12 +220,14 @@ export default function RouteBusesPage() {
                         <div className="flex min-h-[42px] w-full flex-wrap items-center justify-between gap-3 py-px lg:w-[415.83px] lg:flex-nowrap lg:gap-4">
                           <button
                             type="button"
+                            onClick={openBusDetail}
                             className="flex h-[38px] min-w-[126.83px] items-center justify-center whitespace-nowrap rounded-[8px] border border-[#4D4D4D] bg-white px-5 text-center text-[14px] font-bold leading-5 text-[#4D4D4D] shadow-sm hover:bg-[#f7f7f7]"
                           >
                             View Details
                           </button>
                           <button
                             type="button"
+                            onClick={openBusDetail}
                             className="flex h-10 min-w-[119px] items-center justify-center whitespace-nowrap rounded-[8px] bg-[linear-gradient(95.07deg,#748E36_1.52%,#43531D_100%)] px-5 text-center text-[14px] font-bold leading-5 text-white shadow-[0_2px_6px_rgba(0,0,0,0.16)] hover:brightness-105"
                           >
                             Book Now
@@ -240,6 +251,25 @@ export default function RouteBusesPage() {
                 </div>
               )}
             </section>
+          </div>
+        </section>
+
+        <section className="bg-white px-4 py-14 md:py-[67px]">
+          <div className="mx-auto flex w-full max-w-[1120px] flex-col items-center gap-8 text-center text-[#4D4D4D] md:h-[461px]">
+            <h2 className="m-0 flex w-full max-w-[882px] items-center justify-center text-center text-[24px] font-black leading-[1.18] text-[#4D4D4D] md:h-[35px] md:text-[32px] md:leading-[35px]">
+              Comfortable Bus Rental Services for {routeName} tour
+            </h2>
+            <p className="m-0 flex w-full max-w-[1120px] items-center justify-center text-center text-[18px] font-medium leading-9 text-[#4D4D4D] md:h-[384px] md:text-[24px] md:leading-[48px]">
+              ANT Travels offers Luxury Bus Hire from Delhi NCR to Jaipur for group tours, corporate trips,
+              family vacations, wedding travel and school tours. Our fleet includes AC Volvo buses, luxury
+              coaches and tempo travellers that provide a comfortable and safe journey from Delhi, Noida,
+              Greater Noida, Ghaziabad and Gurugram to Jaipur.
+              <br />
+              <br />
+              We provide convenient pickup from Home, Hotel, Delhi Airport, Railway Station and Jewar Airport.
+              Our buses are equipped with pushback seats, air conditioning, music system, charging points and
+              spacious luggage storage to ensure a smooth and enjoyable travel experience.
+            </p>
           </div>
         </section>
       </main>
