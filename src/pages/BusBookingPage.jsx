@@ -247,6 +247,11 @@ export default function BusBookingPage() {
             </button>
             <button
               type="button"
+              onClick={() =>
+                navigate('/popular-routes/view-buses/detail/book-now/passenger-details', {
+                  state: { pageTitle: title },
+                })
+              }
               className="flex h-[51px] w-full max-w-[355.1px] items-center justify-center gap-2 rounded-full bg-[linear-gradient(95.07deg,#748E36_1.52%,#43531D_100%)] px-8 text-center text-[16px] font-bold leading-6 text-white shadow-[0_20px_25px_-5px_rgba(249,115,22,0.3),0_8px_10px_-6px_rgba(249,115,22,0.3)] sm:px-12"
             >
               Continue to Passenger Details

@@ -31,6 +31,10 @@ import PopularRoutesPage from './pages/PopularRoutesPage'
 import RouteBusesPage from './pages/RouteBusesPage'
 import BusDetailPage from './pages/BusDetailPage'
 import BusBookingPage from './pages/BusBookingPage'
+import PassengerDetailsPage from './pages/PassengerDetailsPage'
+import BookingSummaryPage from './pages/BookingSummaryPage'
+import SecurePaymentPage from './pages/SecurePaymentPage'
+import BookingConfirmedPage from './pages/BookingConfirmedPage'
 
 function FormSelect({
   label,
@@ -2400,6 +2404,18 @@ function App() {
   }
   if (currentPath === '/popular-routes/view-buses/detail/book-now') {
     return <BusBookingPage />
+  }
+  if (currentPath === '/popular-routes/view-buses/detail/book-now/passenger-details') {
+    return <PassengerDetailsPage />
+  }
+  if (currentPath === '/popular-routes/view-buses/detail/book-now/passenger-details/summary') {
+    return <BookingSummaryPage />
+  }
+  if (currentPath === '/popular-routes/view-buses/detail/book-now/passenger-details/summary/payment') {
+    return <SecurePaymentPage />
+  }
+  if (currentPath === '/popular-routes/view-buses/detail/book-now/passenger-details/summary/payment/confirmed') {
+    return <BookingConfirmedPage />
   }
 
   return (
