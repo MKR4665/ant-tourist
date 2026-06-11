@@ -28,6 +28,7 @@ import RentTravellerPage from './pages/RentTravellerPage'
 import RentCarPage from './pages/RentCarPage'
 import BusTourPage from './pages/BusTourPage'
 import PopularRoutesPage from './pages/PopularRoutesPage'
+import TravellerRoutesPage from './pages/TravellerRoutesPage'
 import RouteBusesPage from './pages/RouteBusesPage'
 import BusDetailPage from './pages/BusDetailPage'
 import BusBookingPage from './pages/BusBookingPage'
@@ -2386,6 +2387,9 @@ function App() {
   }
   if (currentPath === '/rent-traveller') {
     return <RentTravellerPage />
+  }
+  if (currentPath === '/rent-traveller/routes') {
+    return <TravellerRoutesPage />
   }
   if (currentPath === '/rent-car') {
     return <RentCarPage />

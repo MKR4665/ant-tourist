@@ -59,7 +59,11 @@ export default function PopularDestinationsSection() {
                   </div>
                   <button
                     type="button"
-                    onClick={() => navigate('/send-enquiry')}
+                    onClick={() =>
+                      navigate('/popular-routes/view-buses', {
+                        state: { routeTitle: item.title.replace('Traveller Rental', 'Bus Rental') },
+                      })
+                    }
                     className="flex h-9 min-w-[112px] items-center justify-center rounded-[12px] bg-[#748E36] px-4 text-[14px] font-bold leading-5 text-[#f1f5f9] hover:bg-[#647b2f]"
                   >
                     View Buses

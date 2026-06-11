@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaArrowRight, FaBus, FaCheckCircle, FaHeadset, FaUserTie } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
-import trustedImage from '../../image/b24a56c1ae66ee2fe820cbc8f91ad5882d58bef6.jpg'
+import trustedImage from '../../image/2.png'
 import { TRUST_LIST } from './homeConstants'
 
 const TRUST_ICONS = [FaBus, FaUserTie, FaCheckCircle, FaHeadset]

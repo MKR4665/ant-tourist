@@ -24,6 +24,18 @@ export default function HeroBookingSection() {
   const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState('bus')
 
+  const handleTabClick = (tabId) => {
+    setActiveTab(tabId)
+
+    if (tabId === 'traveller') {
+      navigate('/rent-traveller')
+    } else if (tabId === 'car') {
+      navigate('/rent-car')
+    } else if (tabId === 'ticket') {
+      navigate('/bus-ticket')
+    }
+  }
+
   return (
     <section className="relative bg-white" id="home">
       {/* Hero Background */}
@@ -74,14 +86,14 @@ export default function HeroBookingSection() {
               <button
                 key={tab.id}
                 type="button"
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex min-w-[190px] flex-1 items-center justify-center gap-3 border-b-2 px-6 py-[16px] text-[16px] font-bold whitespace-nowrap transition-all md:text-[20px] ${
+                onClick={() => handleTabClick(tab.id)}
+                className={`group flex h-[53.5px] min-w-[205px] flex-1 items-center justify-center gap-2 border-b-2 px-6 pb-[17px] pt-[16.5px] text-[14px] font-bold leading-5 whitespace-nowrap transition-all focus-visible:border-[#748E36] focus-visible:text-[#4d4d4d] focus-visible:outline-none ${
                   active
                     ? 'border-[#748E36] text-[#4d4d4d]'
-                    : 'border-transparent text-[#4d4d4d]/70 hover:text-[#4d4d4d]'
+                    : 'border-transparent text-[#4d4d4d]/70 hover:border-[#748E36] hover:text-[#4d4d4d]'
                 }`}
               >
-                <Icon className={`text-[20px] ${active ? 'text-[#4d4d4d]' : 'text-[#4d4d4d]/70'}`} />
+                <Icon className={`text-[14px] ${active ? 'text-[#4d4d4d]' : 'text-[#4d4d4d]/70 group-hover:text-[#4d4d4d]'}`} />
                 {tab.label}
               </button>
             )

@@ -4,7 +4,7 @@ import { FaClock, FaFilePdf, FaSnowflake, FaStar, FaSuitcase, FaTint, FaUsers } 
 import FigmaNavbar from '../components/figma/FigmaNavbar'
 import EnquiryFooter from '../components/EnquiryFooter'
 import FloatingCTA from '../components/ui/FloatingCTA'
-import heroBusImage from '../assets/tttttt6.jpg'
+import heroBusImage from '../image/2.png'
 import greenBusImage from '../image/2.png'
 import interiorImageOne from '../assets/r1.jpg'
 import interiorImageTwo from '../assets/r2.jpg'

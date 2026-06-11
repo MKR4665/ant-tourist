@@ -8,7 +8,7 @@ import {
 import FigmaNavbar from '../components/figma/FigmaNavbar'
 import EnquiryFooter from '../components/EnquiryFooter'
 import FloatingCTA from '../components/ui/FloatingCTA'
-import busPreviewImage from '../assets/tttttt6.jpg'
+import busPreviewImage from '../image/2.png'
 
 const defaultTitle = 'Comfortable Bus Hire Service For Delhi To Jaipur Tour'
 const summarySteps = [

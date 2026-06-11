@@ -21,7 +21,7 @@ import {
 import FigmaNavbar from '../components/figma/FigmaNavbar'
 import FigmaFooter from '../components/figma/FigmaFooter'
 import FloatingCTA from '../components/ui/FloatingCTA'
-import busImage from '../assets/tttttt6.jpg'
+import busImage from '../image/2.png'
 import delhiImage from '../assets/delhi.jpg'
 import destJaipur from '../assets/figma/dest_jaipur.png'
 import destAgra from '../assets/figma/dest_agra.png'

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaSnowflake, FaStar, FaSuitcase, FaTint, FaWheelchair } from 'react-icons/fa'
 import luxuryBusImage from '../../image/2.png'
-import acBusImage from '../../assets/tttttt6.jpg'
+import acBusImage from '../../image/2.png'
 
 const LUXURY_BUSES = Array.from({ length: 3 }, () => ({
   title: 'Luxury Volvo Bus',

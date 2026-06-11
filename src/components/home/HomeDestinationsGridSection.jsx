@@ -65,7 +65,7 @@ export default function HomeDestinationsGridSection() {
                   </div>
                   <button
                     type="button"
-                    onClick={() => navigate('/send-enquiry')}
+                    onClick={() => navigate('/popular-routes/view-buses', { state: { routeTitle: item.title } })}
                     className="flex items-center gap-1 rounded-[10px] bg-[#789736] px-4 py-2 text-[12px] font-bold text-white hover:bg-[#6a8530]"
                   >
                     View Buses <FaArrowRight className="text-[10px]" />
