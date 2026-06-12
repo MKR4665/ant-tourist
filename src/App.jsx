@@ -29,6 +29,9 @@ import RentCarPage from './pages/RentCarPage'
 import BusTourPage from './pages/BusTourPage'
 import PopularRoutesPage from './pages/PopularRoutesPage'
 import TravellerRoutesPage from './pages/TravellerRoutesPage'
+import TravellerBusesPage from './pages/TravellerBusesPage'
+import TravellerDetailPage from './pages/TravellerDetailPage'
+import TravellerBookingPage from './pages/TravellerBookingPage'
 import RouteBusesPage from './pages/RouteBusesPage'
 import BusDetailPage from './pages/BusDetailPage'
 import BusBookingPage from './pages/BusBookingPage'
@@ -2390,6 +2393,43 @@ function App() {
   }
   if (currentPath === '/rent-traveller/routes') {
     return <TravellerRoutesPage />
+  }
+  if (currentPath === '/rent-traveller/routes/view-buses') {
+    return <TravellerBusesPage />
+  }
+  if (currentPath === '/rent-traveller/routes/view-buses/detail') {
+    return <TravellerDetailPage />
+  }
+  if (currentPath === '/rent-traveller/routes/view-buses/detail/book-now') {
+    return <TravellerBookingPage />
+  }
+  if (currentPath === '/rent-traveller/routes/view-buses/detail/book-now/passenger-details') {
+    return (
+      <PassengerDetailsPage
+        defaultTitleOverride="Comfortable Traveller / Minivan Rental Service For Delhi To Jaipur Tour"
+        summaryPath="/rent-traveller/routes/view-buses/detail/book-now/passenger-details/summary"
+      />
+    )
+  }
+  if (currentPath === '/rent-traveller/routes/view-buses/detail/book-now/passenger-details/summary') {
+    return (
+      <BookingSummaryPage
+        defaultTitleOverride="Comfortable Traveller / Minivan Rental Service For Delhi To Jaipur Tour"
+        variant="traveller"
+        paymentPath="/rent-traveller/routes/view-buses/detail/book-now/passenger-details/summary/payment"
+      />
+    )
+  }
+  if (currentPath === '/rent-traveller/routes/view-buses/detail/book-now/passenger-details/summary/payment') {
+    return (
+      <SecurePaymentPage
+        variant="traveller"
+        confirmedPath="/rent-traveller/routes/view-buses/detail/book-now/passenger-details/summary/payment/confirmed"
+      />
+    )
+  }
+  if (currentPath === '/rent-traveller/routes/view-buses/detail/book-now/passenger-details/summary/payment/confirmed') {
+    return <BookingConfirmedPage variant="traveller" />
   }
   if (currentPath === '/rent-car') {
     return <RentCarPage />

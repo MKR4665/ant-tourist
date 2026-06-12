@@ -34,9 +34,16 @@ function PaymentRadio({ checked }) {
   )
 }
 
-export default function SecurePaymentPage() {
+export default function SecurePaymentPage({
+  variant = 'bus',
+  confirmedPath = '/popular-routes/view-buses/detail/book-now/passenger-details/summary/payment/confirmed',
+}) {
   const navigate = useNavigate()
   const [selectedOption, setSelectedOption] = useState(paymentOptions.full)
+  const isTraveller = variant === 'traveller'
+  const serviceType = isTraveller ? 'Minivan / Traveller Tour' : 'Bus Tour'
+  const vehicleLabel = isTraveller ? 'Vehicle Name' : 'Vehicle Type'
+  const vehicleValue = isTraveller ? '12 Seater (2+1) Force Traveller' : '47 Seater Ac Luxury'
 
   return (
     <div className="min-h-screen bg-[#f4f6f4] text-[#4D4D4D]" style={{ fontFamily: 'Inter, sans-serif' }}>
@@ -70,13 +77,13 @@ export default function SecurePaymentPage() {
               <p className="text-[10px] font-bold uppercase leading-[15px] tracking-[1px] text-[#4D4D4D]/40">
                 Service Type
               </p>
-              <p className="mt-2 text-[14px] font-semibold leading-5 text-[#4D4D4D]">Bus Tour</p>
+              <p className="mt-2 text-[14px] font-semibold leading-5 text-[#4D4D4D]">{serviceType}</p>
             </div>
             <div className="md:text-right">
               <p className="text-[10px] font-bold uppercase leading-[15px] tracking-[1px] text-[#4D4D4D]/40">
-                Vehicle Type
+                {vehicleLabel}
               </p>
-              <p className="mt-2 text-[14px] font-semibold leading-5 text-[#4D4D4D]">47 Seater Ac Luxury</p>
+              <p className="mt-2 text-[14px] font-semibold leading-5 text-[#4D4D4D]">{vehicleValue}</p>
             </div>
           </div>
           <div className="pt-8">
@@ -158,7 +165,7 @@ export default function SecurePaymentPage() {
         <section className="mt-10 rounded-[28px] border border-white/60 bg-white/70 p-6 shadow-[0_20px_25px_-5px_rgba(0,0,0,0.05),0_10px_10px_-5px_rgba(0,0,0,0.02)] backdrop-blur-md">
           <button
             type="button"
-            onClick={() => navigate('/popular-routes/view-buses/detail/book-now/passenger-details/summary/payment/confirmed')}
+            onClick={() => navigate(confirmedPath)}
             className="flex h-[68px] w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(95.07deg,#748E36_1.52%,#43531D_100%)] px-6 text-[18px] font-bold leading-7 text-white"
           >
             Proceed to Pay {selectedOption === paymentOptions.full ? '\u20B950,000' : ''}

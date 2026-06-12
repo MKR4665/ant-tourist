@@ -128,7 +128,7 @@ export default function TravellerRoutesPage() {
                       </div>
                       <button
                         type="button"
-                        onClick={() => navigate('/send-enquiry', { state: { routeTitle: route.title } })}
+                        onClick={() => navigate('/rent-traveller/routes/view-buses', { state: { routeTitle: route.title } })}
                         className="flex h-9 min-w-[124px] shrink-0 items-center justify-center whitespace-nowrap rounded-[12px] bg-[#748E36] px-4 text-[14px] font-bold leading-5 text-[#F1F5F9] hover:bg-[#647b2f]"
                       >
                         View Buses

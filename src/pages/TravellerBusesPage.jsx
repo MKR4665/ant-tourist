@@ -4,12 +4,12 @@ import { FaClock, FaSnowflake, FaStar, FaSuitcase, FaTint, FaUsers } from 'react
 import FigmaNavbar from '../components/figma/FigmaNavbar'
 import EnquiryFooter from '../components/EnquiryFooter'
 import FloatingCTA from '../components/ui/FloatingCTA'
-import busImage from '../image/2.png'
+import travellerImage from '../image/rent.jpg'
 
-const defaultTitle = 'Comfortable Bus Hire Service For Delhi To Jaipur Tour'
-const defaultRouteName = 'Delhi to jaipur'
+const defaultTitle = 'Comfortable Traveller / Minivan Rental Service For Delhi To Jaipur Tour'
+const defaultRouteName = 'Delhi to Jaipur'
 const sortOptions = ['Best', 'Cheapest']
-const busTypeFilters = ['All', 'Luxury Bus Rental', 'AC Sleeper Bus', 'AC Seater Bus']
+const travellerTypeFilters = ['All', 'Luxury Bus Rental', 'AC Sleeper Bus', 'AC Seater Bus']
 const amenityFilters = [
   'All',
   'Wi-Fi',
@@ -22,44 +22,45 @@ const amenityFilters = [
   'Music with bluetooth mic',
   'Live Tracking',
 ]
-const busListings = Array.from({ length: 6 }, (_, index) => ({
+
+const travellerListings = Array.from({ length: 6 }, (_, index) => ({
   id: index + 1,
-  title: '22 Sleeper Luxury Coach Hire',
-  duration: '2 Day 1 Night',
+  title: '25 Seater (2+2) Luxury Force Motor',
   rating: '4.8',
   reviews: '(120 verified reviews)',
   copy:
-    'Luxury 22-seater coach perfect for weddings, corporate trips & weekend travel. Enjoy AC comfort, premium seats and a smooth ride.',
-  features: ['22 Seats', 'AC', '30 Luggage', 'Water Bottle'],
-  places: ['Hawa Mahal', 'Amber Fort', 'Jal Mahal'],
+    'Luxury traveller perfect for family trips, corporate outings & special occasions. Experience AC comfort, plush seating and a seamless travel experience.',
+  features: ['12 Seats', 'AC', '18 Luggage', 'Water Bottle'],
   price: '\u20B925000',
-  oldPrice: '\u20B929,999',
+  oldPrice: '\u20B970/km',
 }))
 
 const buildTourTitle = (routeTitle = '') => {
-  const cleanRoute = routeTitle.replace(/\s+Bus\s+Rental$/i, '').trim()
-  return cleanRoute ? `Comfortable Bus Hire Service For ${cleanRoute} Tour` : defaultTitle
+  const cleanRoute = routeTitle.replace(/\s+Traveller\s+Rental$/i, '').trim()
+  return cleanRoute ? `Comfortable Traveller / Minivan Rental Service For ${cleanRoute} Tour` : defaultTitle
 }
 
-const getRouteName = (routeTitle = '') => routeTitle.replace(/\s+Bus\s+Rental$/i, '').trim() || defaultRouteName
+const getRouteName = (routeTitle = '') =>
+  routeTitle.replace(/\s+Traveller\s+Rental$/i, '').trim() || defaultRouteName
 
-export default function RouteBusesPage() {
+export default function TravellerBusesPage() {
   const location = useLocation()
   const navigate = useNavigate()
   const title = buildTourTitle(location.state?.routeTitle)
   const routeName = getRouteName(location.state?.routeTitle)
   const [activeSort, setActiveSort] = useState('Best')
-  const [activeBusType, setActiveBusType] = useState('All')
+  const [activeTravellerType, setActiveTravellerType] = useState('All')
   const [activeAmenity, setActiveAmenity] = useState('All')
   const [visibleCount, setVisibleCount] = useState(3)
-  const visibleListings = busListings.slice(0, visibleCount)
-  const canLoadMore = visibleCount < busListings.length
+  const visibleListings = travellerListings.slice(0, visibleCount)
+  const canLoadMore = visibleCount < travellerListings.length
   const clearFilters = () => {
-    setActiveBusType('All')
+    setActiveTravellerType('All')
     setActiveAmenity('All')
   }
-  const openBusDetail = () => {
-    navigate('/popular-routes/view-buses/detail', { state: { pageTitle: title } })
+
+  const openTravellerDetail = () => {
+    navigate('/rent-traveller/routes/view-buses/detail', { state: { pageTitle: title } })
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
@@ -74,7 +75,7 @@ export default function RouteBusesPage() {
           </h1>
         </section>
 
-        <section className="bg-[#ececec] px-4 pb-[165px] pt-0 md:px-6">
+        <section className="bg-[#ececec] px-4 pb-[58px] pt-0 md:px-6">
           <div className="mx-auto grid w-full max-w-[1171px] gap-8 lg:grid-cols-[318px_821px]">
             <aside className="flex flex-col items-start gap-8 text-[#4D4D4D]">
               <div className="flex w-full items-center justify-between">
@@ -87,16 +88,16 @@ export default function RouteBusesPage() {
               <div className="flex w-full flex-col gap-4">
                 <h4 className="m-0 text-[14px] font-bold uppercase leading-5 tracking-[0.7px]">Bus Type</h4>
                 <div className="flex flex-col gap-3">
-                  {busTypeFilters.map((item) => {
-                    const selected = activeBusType === item
+                  {travellerTypeFilters.map((item) => {
+                    const selected = activeTravellerType === item
                     return (
                       <label key={item} className="flex h-5 cursor-pointer items-center gap-[11px] text-[14px] font-normal leading-5">
                         <input
                           type="radio"
-                          name="bus-type-filter"
+                          name="traveller-type-filter"
                           value={item}
                           checked={selected}
-                          onChange={() => setActiveBusType(item)}
+                          onChange={() => setActiveTravellerType(item)}
                           className="sr-only"
                         />
                         <span
@@ -133,7 +134,7 @@ export default function RouteBusesPage() {
                       <label key={item} className="flex h-5 cursor-pointer items-center gap-3 text-[14px] font-normal leading-5">
                         <input
                           type="radio"
-                          name="amenity-filter"
+                          name="traveller-amenity-filter"
                           value={item}
                           checked={selected}
                           onChange={() => setActiveAmenity(item)}
@@ -178,37 +179,35 @@ export default function RouteBusesPage() {
               </div>
 
               <div className="flex flex-col gap-[30px]">
-                {visibleListings.map((bus) => (
+                {visibleListings.map((traveller) => (
                   <article
-                    key={bus.id}
-                    className="flex min-h-[334px] w-full flex-col overflow-hidden rounded-[20px] border border-[#4D4D4D]/40 bg-white lg:h-[334px] lg:flex-row lg:items-center lg:gap-[21px]"
+                    key={traveller.id}
+                    className="flex min-h-[302px] w-full flex-col overflow-hidden rounded-[20px] border border-[#4D4D4D]/40 bg-white lg:h-[302px] lg:flex-row lg:items-center"
                   >
-                    <div className="h-[240px] w-full shrink-0 overflow-hidden lg:h-[334px] lg:w-[337px]">
-                      <img src={busImage} alt={bus.title} className="h-full w-full object-cover lg:rounded-l-[20px]" />
+                    <div className="relative h-[240px] w-full shrink-0 overflow-hidden lg:h-[302px] lg:w-[345px]">
+                      <img src={travellerImage} alt={traveller.title} className="h-full w-full object-cover" />
+                      <span className="absolute left-4 top-4 flex h-6 items-center rounded-full bg-[#748E36] px-3 text-[11px] font-bold uppercase tracking-[1px] text-white">
+                        Premium
+                      </span>
                     </div>
 
-                    <div className="flex w-full flex-col gap-2 p-5 lg:h-[291px] lg:w-[444px] lg:p-0">
-                      <div className="flex flex-col gap-3.5">
-                        <div className="flex flex-col gap-1.5">
-                          <h3 className="m-0 text-[20px] font-bold leading-7 text-[#4D4D4D]">{bus.title}</h3>
-                          <div className="flex items-center gap-1 text-[14px] font-normal leading-5 text-[#4D4D4D]/50">
-                            <FaClock className="text-[11.67px]" />
-                            <span>{bus.duration}</span>
-                          </div>
-                          <div className="flex items-center gap-3">
-                            <span className="inline-flex h-5 items-center gap-1 rounded-[4px] bg-[#556B2F]/10 px-2 text-[12px] font-bold leading-6 text-[#556B2F]">
-                              <FaStar className="text-[#748E36]" /> {bus.rating}
-                            </span>
-                            <span className="text-[12px] font-medium leading-5">{bus.reviews}</span>
-                          </div>
+                    <div className="flex w-full flex-col gap-3 p-5 lg:h-[260px] lg:w-[458px] lg:px-5 lg:py-0">
+                      <div>
+                        <h3 className="m-0 text-[20px] font-bold leading-7 text-[#4D4D4D]">{traveller.title}</h3>
+                        <div className="mt-2 flex items-center gap-3">
+                          <span className="inline-flex h-5 items-center gap-1 rounded-[4px] bg-[#556B2F]/10 px-2 text-[12px] font-bold leading-6 text-[#556B2F]">
+                            <FaStar className="text-[#748E36]" /> {traveller.rating}
+                          </span>
+                          <span className="text-[12px] font-medium leading-5">{traveller.reviews}</span>
                         </div>
-                        <p className="m-0 max-w-[359px] text-[12px] font-normal leading-[17px] text-[#4D4D4D]">
-                          {bus.copy}
-                        </p>
                       </div>
 
-                      <div className="flex flex-wrap gap-1.5 pt-2">
-                        {bus.features.map((feature, index) => {
+                      <p className="m-0 max-w-[400px] text-[12px] font-normal leading-[17px] text-[#4D4D4D]">
+                        {traveller.copy}
+                      </p>
+
+                      <div className="flex flex-wrap gap-1.5">
+                        {traveller.features.map((feature, index) => {
                           const icons = [FaUsers, FaSnowflake, FaSuitcase, FaTint]
                           const Icon = icons[index]
                           return (
@@ -222,45 +221,29 @@ export default function RouteBusesPage() {
                         })}
                       </div>
 
-                      <div className="flex flex-wrap gap-2">
-                        {bus.places.map((place) => (
-                          <span
-                            key={place}
-                            className="flex h-[33px] items-center rounded-[12px] border border-[#C4C8C0] px-4 text-[10px] font-medium leading-5 text-[#434842]"
-                          >
-                            {place}
-                          </span>
-                        ))}
-                        <span className="flex h-[33px] items-center rounded-[12px] bg-[#E2E2E2] px-4 text-[10px] font-medium leading-5 text-[#434842]">
-                          +2
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-[12px] font-bold leading-5 text-[#4D4D4D]">Outstation Price Min 300km/Day -</span>
+                        <span className="text-[12px] font-medium leading-8 text-[#4D4D4D]/40 line-through">
+                          {traveller.oldPrice}
                         </span>
+                        <span className="text-[20px] font-bold leading-8 text-[#748E36]">{traveller.price}</span>
                       </div>
 
-                      <div className="flex flex-col gap-[6px]">
-                        <div className="flex h-8 items-center gap-2">
-                          <span className="text-[12px] font-medium leading-8 text-[#4D4D4D]/40 line-through">
-                            {bus.oldPrice}
-                          </span>
-                          <span className="text-[20px] font-bold leading-8 text-[#748E36]">
-                            {bus.price} <span className="text-[12px] font-medium text-[#4D4D4D]/70">/1 day tour</span>
-                          </span>
-                        </div>
-                        <div className="flex min-h-[42px] w-full flex-wrap items-center justify-between gap-3 py-px lg:w-[415.83px] lg:flex-nowrap lg:gap-4">
-                          <button
-                            type="button"
-                            onClick={openBusDetail}
-                            className="flex h-[38px] min-w-[126.83px] items-center justify-center whitespace-nowrap rounded-[8px] border border-[#4D4D4D] bg-white px-5 text-center text-[14px] font-bold leading-5 text-[#4D4D4D] shadow-sm hover:bg-[#f7f7f7]"
-                          >
-                            View Details
-                          </button>
-                          <button
-                            type="button"
-                            onClick={openBusDetail}
-                            className="flex h-10 min-w-[119px] items-center justify-center whitespace-nowrap rounded-[8px] bg-[linear-gradient(95.07deg,#748E36_1.52%,#43531D_100%)] px-5 text-center text-[14px] font-bold leading-5 text-white shadow-[0_2px_6px_rgba(0,0,0,0.16)] hover:brightness-105"
-                          >
-                            Book Now
-                          </button>
-                        </div>
+                      <div className="flex min-h-[42px] w-full flex-wrap items-center justify-between gap-3 py-px lg:flex-nowrap">
+                        <button
+                          type="button"
+                          onClick={openTravellerDetail}
+                          className="flex h-[38px] min-w-[126.83px] items-center justify-center whitespace-nowrap rounded-[8px] border border-[#4D4D4D] bg-white px-5 text-center text-[14px] font-bold leading-5 text-[#4D4D4D] shadow-sm hover:bg-[#f7f7f7]"
+                        >
+                          View Details
+                        </button>
+                        <button
+                          type="button"
+                          onClick={openTravellerDetail}
+                          className="flex h-10 min-w-[119px] items-center justify-center whitespace-nowrap rounded-[8px] bg-[linear-gradient(95.07deg,#748E36_1.52%,#43531D_100%)] px-5 text-center text-[14px] font-bold leading-5 text-white shadow-[0_2px_6px_rgba(0,0,0,0.16)] hover:brightness-105"
+                        >
+                          Book Now
+                        </button>
                       </div>
                     </div>
                   </article>
@@ -282,10 +265,10 @@ export default function RouteBusesPage() {
           </div>
         </section>
 
-        <section className="bg-white px-4 py-14 md:py-[67px]">
-          <div className="mx-auto flex w-full max-w-[1120px] flex-col items-center gap-8 text-center text-[#4D4D4D] md:h-[461px]">
-            <h2 className="m-0 flex w-full max-w-[882px] items-center justify-center text-center text-[24px] font-black leading-[1.18] text-[#4D4D4D] md:h-[35px] md:text-[32px] md:leading-[35px]">
-              Comfortable Bus Rental Services for {routeName} tour
+        <section className="flex min-h-[630px] items-center justify-center bg-white px-4 py-[72px] md:px-20">
+          <div className="flex w-full max-w-280 flex-col items-center gap-8 text-center text-[#4D4D4D] md:h-[461px]">
+            <h2 className="m-0 flex w-full max-w-[942px] items-center justify-center text-center text-[24px] font-black leading-[1.18] text-[#4D4D4D] md:h-[35px] md:text-[32px] md:leading-[35px]">
+              Luxury Traveller Rental in Delhi NCR for {routeName} Tour
             </h2>
             <p className="m-0 flex w-full max-w-[1120px] items-center justify-center text-center text-[18px] font-medium leading-9 text-[#4D4D4D] md:h-[384px] md:text-[24px] md:leading-[48px]">
               ANT Travels offers Luxury Bus Hire from Delhi NCR to Jaipur for group tours, corporate trips,

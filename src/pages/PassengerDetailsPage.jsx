@@ -183,10 +183,13 @@ function ExtraOptionCard({ option, value, onChange }) {
   )
 }
 
-export default function PassengerDetailsPage() {
+export default function PassengerDetailsPage({
+  defaultTitleOverride = defaultTitle,
+  summaryPath = '/popular-routes/view-buses/detail/book-now/passenger-details/summary',
+}) {
   const location = useLocation()
   const navigate = useNavigate()
-  const title = location.state?.pageTitle || defaultTitle
+  const title = location.state?.pageTitle || defaultTitleOverride
   const [billingEnabled, setBillingEnabled] = useState(false)
   const [quantities, setQuantities] = useState(() => extraOptions.map((option) => option.qty))
 
@@ -303,7 +306,7 @@ export default function PassengerDetailsPage() {
             <button
               type="button"
               onClick={() =>
-                navigate('/popular-routes/view-buses/detail/book-now/passenger-details/summary', {
+                navigate(summaryPath, {
                   state: { pageTitle: title },
                 })
               }

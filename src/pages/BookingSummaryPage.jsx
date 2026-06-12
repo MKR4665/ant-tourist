@@ -9,6 +9,7 @@ import FigmaNavbar from '../components/figma/FigmaNavbar'
 import EnquiryFooter from '../components/EnquiryFooter'
 import FloatingCTA from '../components/ui/FloatingCTA'
 import busPreviewImage from '../image/2.png'
+import travellerPreviewImage from '../image/rent.jpg'
 
 const defaultTitle = 'Comfortable Bus Hire Service For Delhi To Jaipur Tour'
 const summarySteps = [
@@ -17,14 +18,26 @@ const summarySteps = [
   { number: 3, label: 'Summary' },
 ]
 
-const rideMetaTop = [
+const busRideMetaTop = [
   ['From City', 'Delhi'],
   ['Destination', 'Jaipur (Roundtrip)'],
   ['Vehicle Type', 'AC Seater Buses'],
 ]
 
-const rideMetaBottom = [
+const busRideMetaBottom = [
   ['Vehicle Name', '22 Seater Luxury Bus'],
+  ['Departure Date & Time', '27 Nov 2026, 8.30 am'],
+  ['Arrival Date & Time', '30 Nov 2026, 8.30 am'],
+]
+
+const travellerRideMetaTop = [
+  ['From City', 'Delhi'],
+  ['Destination', 'Jaipur (Roundtrip)'],
+  ['Vehicle Type', 'Traveller Minivan'],
+]
+
+const travellerRideMetaBottom = [
+  ['Vehicle Name', '12 Seater (2+1) Force Traveller'],
   ['Departure Date & Time', '27 Nov 2026, 8.30 am'],
   ['Arrival Date & Time', '30 Nov 2026, 8.30 am'],
 ]
@@ -127,10 +140,19 @@ function PriceRow({ label, value, muted = false, highlight = false }) {
   )
 }
 
-export default function BookingSummaryPage() {
+export default function BookingSummaryPage({
+  defaultTitleOverride = defaultTitle,
+  variant = 'bus',
+  paymentPath = '/popular-routes/view-buses/detail/book-now/passenger-details/summary/payment',
+}) {
   const location = useLocation()
   const navigate = useNavigate()
-  const title = location.state?.pageTitle || defaultTitle
+  const title = location.state?.pageTitle || defaultTitleOverride
+  const isTraveller = variant === 'traveller'
+  const rideMetaTop = isTraveller ? travellerRideMetaTop : busRideMetaTop
+  const rideMetaBottom = isTraveller ? travellerRideMetaBottom : busRideMetaBottom
+  const previewImage = isTraveller ? travellerPreviewImage : busPreviewImage
+  const previewAlt = isTraveller ? 'ANT traveller minivan' : 'ANT luxury bus'
 
   return (
     <div className="min-h-screen bg-[#f6f7f7] text-[#4D4D4D]" style={{ fontFamily: 'Inter, sans-serif' }}>
@@ -220,9 +242,9 @@ export default function BookingSummaryPage() {
               <section className="rounded-2xl bg-white p-6 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.05)]">
                 <h2 className="mb-4 text-[18px] font-semibold leading-7 text-[#0F172A]">Payment Summary</h2>
                 <img
-                  src={busPreviewImage}
-                  alt="ANT luxury bus"
-                  className="h-[197px] w-full rounded-xl object-cover"
+                  src={previewImage}
+                  alt={previewAlt}
+                  className={`w-full rounded-xl object-cover ${isTraveller ? 'h-[299px]' : 'h-[197px]'}`}
                 />
                 <div className="mt-4 rounded-xl bg-[linear-gradient(95.34deg,#748E36_5.05%,#384616_94.05%)] p-4 text-white">
                   <div className="space-y-2">
@@ -279,7 +301,7 @@ export default function BookingSummaryPage() {
                 <button
                   type="button"
                   onClick={() =>
-                    navigate('/popular-routes/view-buses/detail/book-now/passenger-details/summary/payment', {
+                    navigate(paymentPath, {
                       state: { pageTitle: title },
                     })
                   }

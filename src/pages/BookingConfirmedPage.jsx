@@ -33,7 +33,11 @@ function BookingInfo({ label, value, align = 'left' }) {
   )
 }
 
-export default function BookingConfirmedPage() {
+export default function BookingConfirmedPage({ variant = 'bus' }) {
+  const isTraveller = variant === 'traveller'
+  const vehicleLabel = isTraveller ? 'Vehicle Name' : 'Vehicle Type'
+  const vehicleValue = isTraveller ? '12 Seater (2+1) Force Traveller' : '45 Seater (2+2)AC Luxury Coach'
+
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A]" style={{ fontFamily: 'Inter, sans-serif' }}>
       <FigmaNavbar />
@@ -91,7 +95,7 @@ export default function BookingConfirmedPage() {
 
             <div className="grid gap-6 px-6 pb-8 sm:grid-cols-2">
               <BookingInfo label="Destination" value="Delhi to Jaipur (Roundtrip)" />
-              <BookingInfo label="Vehicle Type" value="45 Seater (2+2)AC Luxury Coach" align="right" />
+              <BookingInfo label={vehicleLabel} value={vehicleValue} align="right" />
               <BookingInfo label="Departure" value="10 FEB 2026, 8:30 PM" />
               <BookingInfo label="Arrival" value="14 FEB 2026, 7:30 PM" align="right" />
             </div>
