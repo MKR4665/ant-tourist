@@ -9,6 +9,7 @@ import FigmaNavbar from '../components/figma/FigmaNavbar'
 import EnquiryFooter from '../components/EnquiryFooter'
 import FloatingCTA from '../components/ui/FloatingCTA'
 import busPreviewImage from '../image/2.png'
+import carPreviewImage from '../image/car.jpg'
 import travellerPreviewImage from '../image/rent.jpg'
 
 const defaultTitle = 'Comfortable Bus Hire Service For Delhi To Jaipur Tour'
@@ -38,6 +39,18 @@ const travellerRideMetaTop = [
 
 const travellerRideMetaBottom = [
   ['Vehicle Name', '12 Seater (2+1) Force Traveller'],
+  ['Departure Date & Time', '27 Nov 2026, 8.30 am'],
+  ['Arrival Date & Time', '30 Nov 2026, 8.30 am'],
+]
+
+const carRideMetaTop = [
+  ['From City', 'Delhi'],
+  ['Destination', 'Jaipur (Roundtrip)'],
+  ['Vehicle Type', 'Car / SUV / Sedan'],
+]
+
+const carRideMetaBottom = [
+  ['Vehicle Name', 'Swift Dezire 4 PAX'],
   ['Departure Date & Time', '27 Nov 2026, 8.30 am'],
   ['Arrival Date & Time', '30 Nov 2026, 8.30 am'],
 ]
@@ -149,10 +162,11 @@ export default function BookingSummaryPage({
   const navigate = useNavigate()
   const title = location.state?.pageTitle || defaultTitleOverride
   const isTraveller = variant === 'traveller'
-  const rideMetaTop = isTraveller ? travellerRideMetaTop : busRideMetaTop
-  const rideMetaBottom = isTraveller ? travellerRideMetaBottom : busRideMetaBottom
-  const previewImage = isTraveller ? travellerPreviewImage : busPreviewImage
-  const previewAlt = isTraveller ? 'ANT traveller minivan' : 'ANT luxury bus'
+  const isCar = variant === 'car'
+  const rideMetaTop = isCar ? carRideMetaTop : isTraveller ? travellerRideMetaTop : busRideMetaTop
+  const rideMetaBottom = isCar ? carRideMetaBottom : isTraveller ? travellerRideMetaBottom : busRideMetaBottom
+  const previewImage = isCar ? carPreviewImage : isTraveller ? travellerPreviewImage : busPreviewImage
+  const previewAlt = isCar ? 'ANT car rental' : isTraveller ? 'ANT traveller minivan' : 'ANT luxury bus'
 
   return (
     <div className="min-h-screen bg-[#f6f7f7] text-[#4D4D4D]" style={{ fontFamily: 'Inter, sans-serif' }}>

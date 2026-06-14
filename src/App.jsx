@@ -26,6 +26,10 @@ import FigmaNavbar from './components/figma/FigmaNavbar'
 import BusTicketPage from './pages/BusTicketPage'
 import RentTravellerPage from './pages/RentTravellerPage'
 import RentCarPage from './pages/RentCarPage'
+import CarRoutesPage from './pages/CarRoutesPage'
+import CarBusesPage from './pages/CarBusesPage'
+import CarDetailPage from './pages/CarDetailPage'
+import CarBookingPage from './pages/CarBookingPage'
 import BusTourPage from './pages/BusTourPage'
 import PopularRoutesPage from './pages/PopularRoutesPage'
 import TravellerRoutesPage from './pages/TravellerRoutesPage'
@@ -2433,6 +2437,46 @@ function App() {
   }
   if (currentPath === '/rent-car') {
     return <RentCarPage />
+  }
+  if (currentPath === '/rent-car/routes') {
+    return <CarRoutesPage />
+  }
+  if (currentPath === '/rent-car/routes/view-buses') {
+    return <CarBusesPage />
+  }
+  if (currentPath === '/rent-car/routes/view-buses/detail') {
+    return <CarDetailPage />
+  }
+  if (currentPath === '/rent-car/routes/view-buses/detail/book-now') {
+    return <CarBookingPage />
+  }
+  if (currentPath === '/rent-car/routes/view-buses/detail/book-now/passenger-details') {
+    return (
+      <PassengerDetailsPage
+        defaultTitleOverride="Comfortable Car Rental Service For Delhi To Jaipur Tour"
+        summaryPath="/rent-car/routes/view-buses/detail/book-now/passenger-details/summary"
+      />
+    )
+  }
+  if (currentPath === '/rent-car/routes/view-buses/detail/book-now/passenger-details/summary') {
+    return (
+      <BookingSummaryPage
+        defaultTitleOverride="Comfortable Car Rental Service For Delhi To Jaipur Tour"
+        variant="car"
+        paymentPath="/rent-car/routes/view-buses/detail/book-now/passenger-details/summary/payment"
+      />
+    )
+  }
+  if (currentPath === '/rent-car/routes/view-buses/detail/book-now/passenger-details/summary/payment') {
+    return (
+      <SecurePaymentPage
+        variant="car"
+        confirmedPath="/rent-car/routes/view-buses/detail/book-now/passenger-details/summary/payment/confirmed"
+      />
+    )
+  }
+  if (currentPath === '/rent-car/routes/view-buses/detail/book-now/passenger-details/summary/payment/confirmed') {
+    return <BookingConfirmedPage variant="car" />
   }
   if (currentPath === '/bus-tour') {
     return <BusTourPage />

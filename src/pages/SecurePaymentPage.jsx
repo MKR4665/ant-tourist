@@ -41,9 +41,14 @@ export default function SecurePaymentPage({
   const navigate = useNavigate()
   const [selectedOption, setSelectedOption] = useState(paymentOptions.full)
   const isTraveller = variant === 'traveller'
-  const serviceType = isTraveller ? 'Minivan / Traveller Tour' : 'Bus Tour'
-  const vehicleLabel = isTraveller ? 'Vehicle Name' : 'Vehicle Type'
-  const vehicleValue = isTraveller ? '12 Seater (2+1) Force Traveller' : '47 Seater Ac Luxury'
+  const isCar = variant === 'car'
+  const serviceType = isCar ? 'Car Tour' : isTraveller ? 'Minivan / Traveller Tour' : 'Bus Tour'
+  const vehicleLabel = isCar || isTraveller ? 'Vehicle Name' : 'Vehicle Type'
+  const vehicleValue = isCar
+    ? 'Swift Dezire 4 PAX'
+    : isTraveller
+      ? '12 Seater (2+1) Force Traveller'
+      : '47 Seater Ac Luxury'
 
   return (
     <div className="min-h-screen bg-[#f4f6f4] text-[#4D4D4D]" style={{ fontFamily: 'Inter, sans-serif' }}>

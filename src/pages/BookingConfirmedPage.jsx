@@ -123,11 +123,18 @@ async function imageToDataUri(src) {
   }
 }
 
-function getReceiptData(isTraveller) {
+function getReceiptData(variant = 'bus') {
+  const isTraveller = variant === 'traveller'
+  const isCar = variant === 'car'
+
   return {
-    serviceName: isTraveller ? 'Traveller / Minivan Tour' : 'Bus Hire',
-    vehicleLabel: isTraveller ? 'Vehicle Name' : 'Vehicle Type',
-    vehicleName: isTraveller ? '12 Seater (2+1) Force Traveller' : '45 Seater (2+2) AC Luxury Coach',
+    serviceName: isCar ? 'Car Tour' : isTraveller ? 'Traveller / Minivan Tour' : 'Bus Hire',
+    vehicleLabel: isCar || isTraveller ? 'Vehicle Name' : 'Vehicle Type',
+    vehicleName: isCar
+      ? 'Swift Dezire 4 PAX'
+      : isTraveller
+        ? '12 Seater (2+1) Force Traveller'
+        : '45 Seater (2+2) AC Luxury Coach',
     bookingId: 'ANT-01-2026',
     destination: 'Jaipur (Roundtrip)',
     amount: '70,000',
@@ -846,9 +853,14 @@ function BookingInfo({ label, value, align = 'left' }) {
 
 export default function BookingConfirmedPage({ variant = 'bus' }) {
   const isTraveller = variant === 'traveller'
-  const vehicleLabel = isTraveller ? 'Vehicle Name' : 'Vehicle Type'
-  const vehicleValue = isTraveller ? '12 Seater (2+1) Force Traveller' : '45 Seater (2+2)AC Luxury Coach'
-  const receiptData = getReceiptData(isTraveller)
+  const isCar = variant === 'car'
+  const vehicleLabel = isCar || isTraveller ? 'Vehicle Name' : 'Vehicle Type'
+  const vehicleValue = isCar
+    ? 'Swift Dezire 4 PAX'
+    : isTraveller
+      ? '12 Seater (2+1) Force Traveller'
+      : '45 Seater (2+2)AC Luxury Coach'
+  const receiptData = getReceiptData(variant)
 
   const handleBookingReceiptDownload = () => {
     downloadHtml('booking-receipt-preview.html', buildBookingReceipt(receiptData))
